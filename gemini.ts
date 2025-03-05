@@ -50,6 +50,7 @@ async function tryWithRetry(
             lastError = error as Error;
             if(attempt < maxRetries -1) {
                 const delay = INIT_DELAY_RET * Math.pow(2, attempt);
+                console.log(`Attempt ${attempt + 1}/${maxRetries} failed for model ${modelName}. Retrying in ${delay}ms`, {error: lastError});
                 await sleep(delay);
                 continue;
             }
